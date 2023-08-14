@@ -4,7 +4,7 @@ Vector Search introduces a whole new level of search capabilites. To highlight t
 
 ## Prerequisites
 * [MongoDB Atlas Subscription](https://cloud.mongodb.com/) (Free Tier is fine)
-* Open AI [API key](https://platform.openai.com/account/api-keys)
+* OpenAI [API key](https://platform.openai.com/account/api-keys)
 
 ## Quick Setup Steps
 
@@ -19,7 +19,7 @@ _Note, if you've previously loaded the Sample Dataset, you may have to reload to
 
 2. Create the Search Index
 
-After the Sample Dataset loaded, select *Create Index* under ATLAS SEARCH in the lower right corner of the deployment window:
+After the Sample Dataset loaded, select **Create Index** under ATLAS SEARCH in the lower right corner of the deployment window:
 
 ![](./images/create-index.png)
 
@@ -42,11 +42,11 @@ Use the JSON Editor option and supply the following index defination:
 
 ![](./images/create-index2.png)
 
-## Command Line (Terminal)
+### Command Line (Terminal)
 
 1. Get the code:
 ```zsh
-git clone https://github.com/wbleonard/movie_recommenations.git
+git clone https://github.com/wbleonard/movie_recommendations.git
 ```
 2. Update [params.py](params.py) with your MongoDB connection string and Open AI [API key](https://platform.openai.com/account/api-keys).
 3. Create a new Python environment
