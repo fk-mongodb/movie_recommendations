@@ -49,6 +49,10 @@ Use the JSON Editor option and supply the following index defination:
 git clone https://github.com/wbleonard/movie_recommendations.git
 ```
 2. Update [params.py](params.py) with your MongoDB connection string and Open AI [API key](https://platform.openai.com/account/api-keys).
+```yaml
+OPENAI_API_KEY='OpenAI API Key'
+MONGODB_CONN_STRING = 'MongoDB Connection String'
+```
 3. Create a new Python environment
 ```zsh
 python3 -m venv env
