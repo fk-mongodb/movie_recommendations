@@ -1,0 +1,2 @@
+OPENAI_API_KEY='OpenAI API Key'
+MONGODB_CONN_STRING = 'MongoDB Connection String'
