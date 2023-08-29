@@ -65,7 +65,8 @@ source env/bin/activate
 ```zsh
 pip3 install -r requirements.txt
 ```
-## Discover
+
+## Discover (CLI)
 ```zsh
 python3 recommend.py -t "A poisened man fights to find the antidote"                                                                         
 {
@@ -104,3 +105,14 @@ python3 recommend.py -t "A poisened man fights to find the antidote"
 } 
 
 ```
+
+## Discover (UI)
+
+```zsh
+python3 app.py
+```
+
+[http://127.0.0.1:5000/](http://127.0.0.1:5000/)
+
+![](./images/ui.png)
+
