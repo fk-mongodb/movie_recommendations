@@ -23,20 +23,19 @@ After the Sample Dataset loaded, select **Create Index** under ATLAS SEARCH in t
 
 ![](./images/create-index.png)
 
-Use the JSON Editor option and supply the following index defination: 
+Select the option to create an **Atlas Vector Search** index and supply the following index defination: 
 
 ```json
 {
-  "mappings": {
-    "dynamic": true,
-    "fields": {
-      "plot_embedding": {
-        "type": "knnVector",
-        "dimensions": 1536,
-        "similarity": "euclidean"
-      }
+  "type": "vectorSearch",
+  "fields": [
+    {
+      "numDimensions": 1536,
+      "path": "plot_embedding",
+      "similarity": "euclidean",
+      "type": "vector"
     }
-  }
+  ]
 }
 ```
 

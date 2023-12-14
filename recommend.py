@@ -16,7 +16,7 @@ if args.question is None:
     topic = "a magical realm and a battle against dark forces to protect it."
     topic = "A dystopian future, a lone hero rebeling against a tyrannical government."
     topic = "A comedy about a mismatched pair of strangers."
-    topic = "A poisened man fights to find the antidote."
+    topic = "A poisoned man fights to find the antidote."
 else:
     topic = args.question
 
@@ -37,12 +37,12 @@ def searchMongoDB(embedding):
 
     pipeline = [
         {
-            "$search": {
-                "knnBeta": {
-                    "vector": embedding,
-                    "path": "plot_embedding",
-                    "k": 5
-                }
+            "$vectorSearch": {
+                "index": "vector_index",
+                "queryVector": embedding,
+                "path": "plot_embedding",
+                "limit": 5, # number of nearest neighbors to return
+                "numCandidates": 50 # number of HNSW entry points to explore     
             }
         },
         {
