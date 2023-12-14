@@ -1,13 +1,15 @@
-import os
 import openai
 import params
 from pymongo import MongoClient
 import json
 import argparse
 
+
 # Process arguments
-parser = argparse.ArgumentParser(description='Movie Search')
-parser.add_argument('-t', '--question', help="What type of movie are you in the mood for?")
+parser = argparse.ArgumentParser(description="Movie Search")
+parser.add_argument(
+    "-t", "--question", help="What type of movie are you in the mood for?"
+)
 args = parser.parse_args()
 
 if args.question is None:
@@ -20,15 +22,13 @@ if args.question is None:
 else:
     topic = args.question
 
+
 # Encode our question
 def encode(topic):
     openai.api_key = params.OPENAI_API_KEY
-    response = openai.Embedding.create(
-    model="text-embedding-ada-002",
-    input=topic
-    )
-
+    response = openai.Embedding.create(model="text-embedding-ada-002", input=topic)
     return response.data[0].embedding
+
 
 # Establish connection to MongoDB
 def searchMongoDB(embedding):
@@ -41,32 +41,35 @@ def searchMongoDB(embedding):
                 "index": "vector_index",
                 "queryVector": embedding,
                 "path": "plot_embedding",
-                "limit": 5, # number of nearest neighbors to return
-                "numCandidates": 50 # number of HNSW entry points to explore     
+                "limit": 5,  # number of nearest neighbors to return
+                "numCandidates": 50,  # number of HNSW entry points to explore
             }
         },
         {
-        "$project": {
-        "_id": 0,
-        "title": 1,
-        "plot": 1,
-        "rating":"$imdb.rating",
-        "score": { '$meta': "searchScore" }
-        }
-    },
-        {
-            "$limit": 5
+            "$project": {
+                "_id": 0,
+                "title": 1,
+                "plot": 1,
+                "rating": "$imdb.rating",
+                "score": {"$meta": "searchScore"},
+            }
         },
-
+        {"$limit": 5},
     ]
 
     return result_collection.aggregate(pipeline)
 
+
 def getRecommendations(topic):
     embedding = encode(topic)
-    return searchMongoDB(embedding)
+    search_results_cursor = searchMongoDB(embedding)
+    documents = list(search_results_cursor)
+    json_data = json.dumps(documents, default=str, indent=2)
+    return json_data
+
 
 results = getRecommendations(topic)
 
-for result in results:
-    print(json.dumps(result, indent=4), "\n")
+print(results)
+
+

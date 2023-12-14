@@ -111,7 +111,7 @@ python3 recommend.py -t "A poisened man fights to find the antidote"
 python3 app.py
 ```
 
-[http://127.0.0.1:5000/](http://127.0.0.1:5000/)
+[http://127.0.0.1:7861](http://127.0.0.1:7861)
 
 ![](./images/ui.png)
 
