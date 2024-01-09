@@ -27,13 +27,12 @@ Select the option to create an **Atlas Vector Search** index and supply the foll
 
 ```json
 {
-  "type": "vectorSearch",
   "fields": [
     {
-      "numDimensions": 1536,
+      "type": "vector",
       "path": "plot_embedding",
-      "similarity": "euclidean",
-      "type": "vector"
+      "numDimensions": 1536,
+      "similarity": "euclidean"
     }
   ]
 }
