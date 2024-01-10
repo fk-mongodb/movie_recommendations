@@ -1,4 +1,4 @@
-import openai
+from openai import OpenAI
 import params
 from pymongo import MongoClient
 import json
@@ -24,9 +24,9 @@ else:
 
 
 # Encode our question
+client = OpenAI(api_key=params.OPENAI_API_KEY)
 def encode(topic):
-    openai.api_key = params.OPENAI_API_KEY
-    response = openai.Embedding.create(model="text-embedding-ada-002", input=topic)
+    response = client.embeddings.create(model="text-embedding-ada-002", input=topic)
     return response.data[0].embedding
 
 
