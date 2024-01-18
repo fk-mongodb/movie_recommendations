@@ -51,8 +51,7 @@ def searchMongoDB(embedding):
                 "title": 1,
                 "plot": 1,
                 "rating": "$imdb.rating",
-                "score": {"$meta": "searchScore"},
-            }
+                "score": { '$meta': "vectorSearchScore" }            }
         },
         {"$limit": 5},
     ]
