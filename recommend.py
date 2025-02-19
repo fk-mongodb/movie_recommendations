@@ -25,6 +25,8 @@ else:
 
 # Encode our question
 client = OpenAI(api_key=params.OPENAI_API_KEY)
+
+
 def encode(topic):
     response = client.embeddings.create(model="text-embedding-ada-002", input=topic)
     return response.data[0].embedding
@@ -51,7 +53,8 @@ def searchMongoDB(embedding):
                 "title": 1,
                 "plot": 1,
                 "rating": "$imdb.rating",
-                "score": { '$meta': "vectorSearchScore" }            }
+                "score": {"$meta": "vectorSearchScore"},
+            }
         },
         {"$limit": 5},
     ]
@@ -70,5 +73,3 @@ def getRecommendations(topic):
 results = getRecommendations(topic)
 
 print(results)
-
-
